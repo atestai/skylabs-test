@@ -36,7 +36,7 @@ I campi possono essere di vari tipi da numerici a testuali da binari ad enumerat
 Un insieme di campi è definito chiave primaria quando identifica univocamente un record della tabella. 
 I records di una tabella possono essere relazionati ai records di un altra tabella, questo avviene tramite l'utilizzo delle chiavi esterne, che servono per congiungere le tabelle quando vengono eseguite le interrogazioni per la consultazione dei dati del DB.
 
-Per manipolare i dati del DB si utilizza SQL i comandi del database possono essere di vari tipi:
+Per manipolare i dati del DB si utilizza un linguaggio denominato SQL i comandi del database possono essere di vari tipi:
 
 Interrogazione - restituiscono dati in base ai criteri di selezione e di richiesta. 
 SELECT campo1, campo2 FROM tabella WHERE campo3 = valore;
@@ -58,6 +58,9 @@ I dati vengono gestiti tramite DBMS un sistema di gestione tra i più conosciuti
 
 E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni attraverso gli opportuni driver cosi da eseguire le query dal linguaggio e manipolarne i dati per avere di risultati.
 
+
+
+4. Cos'è un database NoSQL ?
 
 
 
