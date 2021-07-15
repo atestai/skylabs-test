@@ -12,7 +12,15 @@ I punti fondamentali delle linee guida sono:
 2. Non esiste uno stato che gestisce una sessione di lavoro nel server, ne consegue che se si deve gestire uno stato della sessione di lavoro è compito del client.
 3. L'interfaccia è uniforme per tutti i componenti, ne segue un trasferimento standardizzato e non personalizzato per ogni applicazione che ne fa richiesta.
 4. Possono esistere livelli di accesso gerarchico ai dati : ex http://domain/api/v1.0/logs può dare accesso a tutti i logs del sistema mentre http://domain/api/v1.0/users/100/logs da l'accesso ai logs del sistema solo del'utente con ID 100.  
-        
 
+2. Cosa si intende per servizio SOAP ?
+
+E' un servizio che si basa sul protocollo SOAP, nato per permettere la comunicazione tra applicazioni sviluppate con linguaggi differente.
+Essendo un protocollo deve seguire regole ben precise, che influiscono sulla complessità delle soluzioni ed il carico di gestione del sistema allungando di tempi comunicazione. 
+D'altro canto garantisce degli standard di conformità come sicurezza, atomicità, coerenza ed isolamento (ACID) che lo fanno preferire per le soluzioni enterprice.
+Il formato utilizzato per lo scambio dei messaggi è XML. 
+
+Esempi di servizi che implementano il protocollo SOAP sono alcuni gateway utilizzati per lo scambio delle fatture elettronico col sistema di interscambio dell'Agenzia delle Entrate. 
+I servizi Soap vengono preferiti dunque quando si vuole garantire elevata sicurezza e transazioni complesse.
 
 
