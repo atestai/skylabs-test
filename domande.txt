@@ -13,6 +13,8 @@ I punti fondamentali delle linee guida sono:
 3. L'interfaccia è uniforme per tutti i componenti, ne segue un trasferimento standardizzato e non personalizzato per ogni applicazione che ne fa richiesta.
 4. Possono esistere livelli di accesso gerarchico ai dati : ex http://domain/api/v1.0/logs può dare accesso a tutti i logs del sistema mentre http://domain/api/v1.0/users/100/logs da l'accesso ai logs del sistema solo del'utente con ID 100.  
 
+
+
 2. Cosa si intende per servizio SOAP ?
 
 E' un servizio che si basa sul protocollo SOAP, nato per permettere la comunicazione tra applicazioni sviluppate con linguaggi differente.
@@ -24,3 +26,40 @@ Esempi di servizi che implementano il protocollo SOAP sono alcuni gateway utiliz
 I servizi Soap vengono preferiti dunque quando si vuole garantire elevata sicurezza e transazioni complesse.
 
 
+
+3. Cos'è un database relazionale ?
+
+E' la raccolta di un insieme di dati che sono legati tra loro per mezzo di relazioni predefinite. 
+I dati che possono essere classificati in entità vengono conservati nelle tabelle del DB.
+Le tabelle sono formate da righe che rappresentano i records e da colonne che rappresentano gli attributi o campi di ogni record. 
+I campi possono essere di vari tipi da numerici a testuali da binari ad enumerati, ecc...
+Un insieme di campi è definito chiave primaria quando identifica univocamente un record della tabella. 
+I records di una tabella possono essere relazionati ai records di un altra tabella, questo avviene tramite l'utilizzo delle chiavi esterne, che servono per congiungere le tabelle quando vengono eseguite le interrogazioni per la consultazione dei dati del DB.
+
+Per manipolare i dati del DB si utilizza SQL i comandi del database possono essere di vari tipi:
+
+Interrogazione - restituiscono dati in base ai criteri di selezione e di richiesta. 
+SELECT campo1, campo2 FROM tabella WHERE campo3 = valore;
+è anche possibile combinare i dati di piu tabella usando le istruzioni di JOIN che collegano le tabelle relazionate tra di loro tramite le chiavi esterne e primarie. 
+
+Inserimento - inseriscono nuovi record nelle tabelle del DB
+INSERT INTO tabella (campo1,campo2) VALUES (valore1,valore2);
+
+Modifica - variano i dati che rispettano date condizioni
+UPDATE tabella SET campo1 = valore1, campo2 = valore2 WHERE campo3 = valore;
+
+Cancellazione - eliminano in modeo permanente i records dal db
+DELETE FROM tabella WHERE campo1 = valore;
+
+Oltre a questi che servono alla manipolazione dei record abbiamo altri comandi per la gestione della struttura del DB:
+CREATE TABLE, ALTER TABLE, DROP, TRUNCATE.   
+
+I dati vengono gestiti tramite DBMS un sistema di gestione tra i più conosciuti ricordiamo: Oracle, Mysql, MariaDB, PostgreSQL che garantiscono uno standard ACID tramite l'utilizzo delle transazioni.
+
+E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni attraverso gli opportuni driver cosi da eseguire le query dal linguaggio e manipolarne i dati per avere di risultati.
+
+
+
+
+  
+  
