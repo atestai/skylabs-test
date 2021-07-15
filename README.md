@@ -1,2 +1,2 @@
 # skylabs-test
-Repositori per i test di Skylabs
+Repository per i test di Skylabs
