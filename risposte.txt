@@ -76,17 +76,37 @@ I documenti che hanno la forma di oggetti JSON vengono memorizzati in contenitor
 Ciascun documento contiene una serie di coppie campo/valore. I valori sono di vari tipi ad esempio stringhe, numeri, booleani, array o oggetti. 
 Questo permettere agli sviluppatori di allineare i documenti del db con gli oggetti che si usano durante la programmazione cosi mantenere persistente la base di dati durante l'esecuzione del codice.   
 
-Le sue caratteristiche gli permettono alte performance e di essere altamente scalabile orizzontalmente (aggiunta di server, contro la sostituzione) così da contenere e gestire grandi volumi di dati. 
-La scalabilità consente la distribuzione su + server acquisendo i seguenti vantaggi: 
+Le sue caratteristiche gli permettono alte performance e di essere altamente scalabile orizzontalmente (aggiunta di server, contro la sostituzione con un altro + grande). 
+La scalabilità consente la distribuzione su + servers acquisendo i seguenti vantaggi: 
+- gestione di grandi volumi di dati.
 - risposta reattiva ai fail-hover, se una macchina smette di funzionare si possono dirottare i dati su di un altra attiva,
 - alta disponibilità  
 - disaster recovery
 
-Per ottenere questi vantaggi si è dovuto rinunciare a funzioni fondamentali dei db Realzionali: le Join e le transazioni.
-   
+Per ottenere la performance e scalabilità si è dovuto rinunciare a funzioni fondamentali dei db Realzionali: le Join e le transazioni.
+Per ovviare alla mancanza delle JOIN si è introdotto il concetto di Pre-Join(incapsulazione) detto anche "denormalizzazione" in questo modo i dati vengono salvati già uniti. 
+Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle secondarie del DB.
 
-I database noSQL possono gestire i dati di relazione tra vari documenti, senza suddividerli tra tabelle. 
-I modelli di dati NoSQL consentono di annidare i dati correlati all’interno di un’unica struttura di dati.
+{
+    "_id" : 1,
+    "name" : "Antonio",
+    "workclass" : {
+        "name" :"Developer"
+        "qualification" : "full stack"
+    }
+    "cars" :[
+        {
+            "brand" : "Nissan",
+            "name" : "Juke"
+        },{
+            "brand" : "Citroen",
+            "name" : "C1",
+            "year" : 2010  
+        }
+    ]
+
+}
+
 
 
 
