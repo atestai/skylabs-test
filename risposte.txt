@@ -62,6 +62,17 @@ E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni att
 
 4. Cos'è un database NoSQL ?
 
+I DB noSQL non utilizzano le tabelle per memorizzare i dati. Possono essere distinti in varie tipologie in base a loro modello di dati. I più importanti sono i documenti (MongoDB), chiave/valore (Redis) e i grafici. 
+I DB noSQL sono pensati per applicazioni che necessitano di grandi volumi di dati e garantiscono flessibilità dello schema di rappresentazione del dato e una bassa latenza, minimizzando i criteri di coerenza di dati che offrono i DB relazionali ad esempio le join e le transazioni.      
+
+
+I database noSQL possono gestire i dati di relazione tra vari documenti, senza suddividerli tra tabelle. I modelli di dati NoSQL consentono di annidare i dati correlati all’interno di un’unica struttura di dati.
+
+
+
+
+
+
 
 
   
