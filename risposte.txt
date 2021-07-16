@@ -1,17 +1,21 @@
 1. Cosa si intende per API REST?
 
 Sono delle interfacce di comunicazione che consentono il trasferimento di dati tra applicazioni. 
-Sono baste sul REpresentational State Transfer che sono delle linee guida che creano e governano l'architettura della infrastruttura di comunicazione. Il loro utilizzo è diffuso nella comunicazione tra i servizi Web (web service) e le App di svariata natura, mobile, web e desktop. 
+Sono baste sul REpresentational State Transfer che sono delle linee guida che creano e governano l'architettura della infrastruttura di comunicazione. 
+Il loro utilizzo è diffuso nella comunicazione tra i servizi Web (web service) e le App di svariata natura, mobile, web e desktop. 
 Nella maggior parte dei casi si usa il protocollo HTTP, HiperText Transfer Protocol, un protocollo applicazione nato per le trasmissione delle pagine web, che prevede la presenza di un client, (richiedente del servizio) e di un server (fornitore del servizio). 
 Il server mette a disposizione una serie di endpoint che possono essere interrogati con vari criteri di sicurezza e di livelli di accesso, tipicamente tramite l'utilizzo di tokens temporanei. 
 Il client che necessita di un servizio fa una richiesta tramite una chiamata alle API ed il server restituisce un messaggio, che può essere in molti formati, i + utilizzati sono Xml e Json, che negli ultimi anni a preso il sopravvento su tutti gli altri formati. 
 Il Json che è la notazione in cui vengono rappresentati gli oggetti nel linguaggio Javascript è ormai utilizzato da tutti i linguaggi di programmazione ed è anche leggibile dagli uomini grazie all'utilizzo della forma chiave/valore. 
-{"name": "Antoni", "email": "my@email.com"}. 
+{"name": "Antonio", "email": "my@email.com"}. 
+
 I punti fondamentali delle linee guida sono:
 1. La presenza di un client e di un server.
 2. Non esiste uno stato che gestisce una sessione di lavoro nel server, ne consegue che se si deve gestire uno stato della sessione di lavoro è compito del client.
 3. L'interfaccia è uniforme per tutti i componenti, ne segue un trasferimento standardizzato e non personalizzato per ogni applicazione che ne fa richiesta.
-4. Possono esistere livelli di accesso gerarchico ai dati : ex http://domain/api/v1.0/logs può dare accesso a tutti i logs del sistema mentre http://domain/api/v1.0/users/100/logs da l'accesso ai logs del sistema solo del'utente con ID 100.  
+4. Possono esistere livelli di accesso gerarchico ai dati. ex: 
+    - http://domain/api/v1.0/logs può dare accesso a tutti i logs del sistema mentre 
+    - http://domain/api/v1.0/users/100/logs da l'accesso ai logs del sistema solo del'utente con ID 100.  
 
 
 
@@ -54,7 +58,7 @@ DELETE FROM tabella WHERE campo1 = valore;
 Oltre a questi che servono alla manipolazione dei record abbiamo altri comandi per la gestione della struttura del DB:
 CREATE TABLE, ALTER TABLE, DROP, TRUNCATE.   
 
-I dati vengono gestiti tramite DBMS un sistema di gestione tra i più conosciuti ricordiamo: Oracle, Mysql, MariaDB, PostgreSQL che garantiscono uno standard ACID tramite l'utilizzo delle transazioni.
+I dati vengono gestiti tramite DBMS un sistema di gestione tra i più conosciuti ricordiamo: Oracle, Mysql, MariaDB, PostgreSQL che garantiscono uno standard ACID tramite l'utilizzo delle transazioni, cioè una sequenza di operazioni atomiche che possono concludersi con un evento di successo detto COMMIT o di insuccesso ROLLBACK   
 
 E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni attraverso gli opportuni driver cosi da eseguire le query dal linguaggio e manipolarne i dati per avere di risultati.
 
@@ -62,11 +66,27 @@ E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni att
 
 4. Cos'è un database NoSQL ?
 
-I DB noSQL non utilizzano le tabelle per memorizzare i dati. Possono essere distinti in varie tipologie in base a loro modello di dati. I più importanti sono i documenti (MongoDB), chiave/valore (Redis) e i grafici. 
-I DB noSQL sono pensati per applicazioni che necessitano di grandi volumi di dati e garantiscono flessibilità dello schema di rappresentazione del dato e una bassa latenza, minimizzando i criteri di coerenza di dati che offrono i DB relazionali ad esempio le join e le transazioni.      
+I DB noSQL non utilizzano le tabelle per memorizzare i dati. 
+Possono essere distinti in varie tipologie in base a loro modello di dati. 
+I più importanti sono i documenti (MongoDB), chiave/valore (Redis), wide-columns (Cassandra) e i grafici. 
+I DB noSQL sono pensati per applicazioni che necessitano di grandi volumi di dati e garantiscono flessibilità dello schema di rappresentazione del dato e una bassa latenza, minimizzando o avvolte eliminando i classici criteri di coerenza di dati che offrono i DB relazionali ad esempio le join e le transazioni.      
 
+Un database noSql molto utilizzato è MongoDB, un db documentale. 
+I documenti che hanno la forma di oggetti JSON vengono memorizzati in contenitori chiamati collections.
+Ciascun documento contiene una serie di coppie campo/valore. I valori sono di vari tipi ad esempio stringhe, numeri, booleani, array o oggetti. 
+Questo permettere agli sviluppatori di allineare i documenti del db con gli oggetti che si usano durante la programmazione cosi mantenere persistente la base di dati durante l'esecuzione del codice.   
 
-I database noSQL possono gestire i dati di relazione tra vari documenti, senza suddividerli tra tabelle. I modelli di dati NoSQL consentono di annidare i dati correlati all’interno di un’unica struttura di dati.
+Le sue caratteristiche gli permettono alte performance e di essere altamente scalabile orizzontalmente (aggiunta di server, contro la sostituzione) così da contenere e gestire grandi volumi di dati. 
+La scalabilità consente la distribuzione su + server acquisendo i seguenti vantaggi: 
+- risposta reattiva ai fail-hover, se una macchina smette di funzionare si possono dirottare i dati su di un altra attiva,
+- alta disponibilità  
+- disaster recovery
+
+Per ottenere questi vantaggi si è dovuto rinunciare a funzioni fondamentali dei db Realzionali: le Join e le transazioni.
+   
+
+I database noSQL possono gestire i dati di relazione tra vari documenti, senza suddividerli tra tabelle. 
+I modelli di dati NoSQL consentono di annidare i dati correlati all’interno di un’unica struttura di dati.
 
 
 
