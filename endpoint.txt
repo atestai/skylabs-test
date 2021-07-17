@@ -13,3 +13,7 @@ http://localhost:3000/api/v1.0/records/stats/:aggregationType/:aggregationValue
 http://localhost:3000/api/v1.0/records/csv
 
     - http://localhost:3000/api/v1.0/records/csv?offset=0&count=10
+
+
+http://localhost:3000/api/v1.0/education_levels
+
