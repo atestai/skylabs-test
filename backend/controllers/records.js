@@ -57,45 +57,122 @@ RecordsModel.belongsTo(Countries, {
 });
 
 
+const purge = x => JSON.parse(JSON.stringify(x));
+
+
+const getData = async (query) =>{
+
+    const attributes = ['id', 'age', 'education_num', 'capital_gain', 'capital_loss', 'hours_week', 'over_50k'];     
+    
+    const {offset=undefined} = query;
+    const {count:limit=undefined} = query;
+    const where = undefined;
+
+
+    const total = await RecordsModel.count({where});
+
+    const data = await RecordsModel.findAll({
+        attributes, 
+        include: ['workclass', 'education_levels', 'marital_status', 'occupation', 'relationship', 'race', 'sex', 'country'],
+        where,
+        offset,
+        limit
+    });
+
+    return {
+        meta :{ 
+            total,
+            count: data.length,
+            offset, 
+            limit
+        } , 
+        data};
+};
 
 const Records = {
 
+    
     async getAll(req, res){
 
-        const attributes = ['id', 'age', 'education_num', 'capital_gain', 'capital_loss', 'hours_week', 'over_50k'];     
-        
-        const {offset=undefined} = req.query;
-        const {count:limit=undefined} = req.query;
-        const where = undefined;
-    
-
-        const total = await RecordsModel.count({where});
-
-        const data = await RecordsModel.findAll({
-            attributes, 
-
-            include: ['workclass', 'education_levels', 'marital_status', 'occupation', 'relationship', 'race', 'sex', 'country'],
-
-            where,
-            offset,
-            limit
-        });
-
+        const {meta, data} = await getData(req.query);
        
         res.status(200).json({
-            meta: {
-                total,
-                offset,
-                limit
-            },
+            meta,
             data
         });
     },
 
 
+    async getCsv(req, res){
+
+        const os = require('os');
+        const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
+        const {data} = await getData(req.query);
+       
+        const filename = os.tmpdir() + '/' + new Date().getTime() + ".csv" ;
+
+        console.log(filename);
+        console.log(data.length);
+
+        if (!data.length){
+            return res.status(204).json();
+        }
+        
+
+        const header = [];
+        const schema = JSON.parse(JSON.stringify(data[0]));
+
+        for (const key in schema) {
+            header.push({
+                id : key,
+                title : key
+            });
+        }
+
+        //console.log(header);
+
+        const record = data.map( record => {
+
+            const item = purge(record);
+            const ret = {};
+            
+            for (const key in item) {
+                if (Object.hasOwnProperty.call(item[key], 'name')){
+                    ret[key] = item[key].name;
+                }
+                else{
+                    ret[key] = item[key];
+                }
+            }
+           
+            return ret;
+        })
+
+
+        const csvWriter = createCsvWriter({
+            path: filename,
+            header
+
+        });
+        
+        await csvWriter.writeRecords(record)
+        
+        res.download(filename);       
+
+        try {
+            fs.unlinkSync(filename)
+        } catch(err) {
+            console.error(err)
+        }
+
+    },
+
+
     async getStats(req, res){
 
-        console.log(req.params);
+        //console.log(req.params);
+
         const {aggregationType=undefined} = req.params;
         const {aggregationValue:aggregationFilter=undefined} = req.params;
 

@@ -9,3 +9,7 @@ http://localhost:3000/api/v1.0/records/stats/:aggregationType/:aggregationValue
     - http://localhost:3000/api/v1.0/records/stats/education_level_id/11 
     - http://localhost:3000/api/v1.0/records/stats/occupation_id/13
 
+
+http://localhost:3000/api/v1.0/records/csv
+
+    - http://localhost:3000/api/v1.0/records/csv?offset=0&count=10
