@@ -105,6 +105,7 @@ const Records = {
 
     async getCsv(req, res){
 
+        const fs = require('fs');
         const os = require('os');
         const createCsvWriter = require('csv-writer').createObjectCsvWriter;
 
@@ -119,9 +120,8 @@ const Records = {
             return res.status(204).json();
         }
         
-
         const header = [];
-        const schema = JSON.parse(JSON.stringify(data[0]));
+        const schema = purge(data[0]);
 
         for (const key in schema) {
             header.push({
@@ -138,6 +138,7 @@ const Records = {
             const ret = {};
             
             for (const key in item) {
+
                 if (Object.hasOwnProperty.call(item[key], 'name')){
                     ret[key] = item[key].name;
                 }
@@ -158,14 +159,14 @@ const Records = {
         
         await csvWriter.writeRecords(record)
         
-        res.download(filename);       
 
-        try {
-            fs.unlinkSync(filename)
-        } catch(err) {
-            console.error(err)
-        }
-
+        res.download(filename, () => {
+            try {
+                fs.unlinkSync(filename)
+            } catch(err) {
+                console.error(err)
+            }
+        });       
     },
 
 
