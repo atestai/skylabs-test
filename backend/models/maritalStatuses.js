@@ -4,14 +4,14 @@ const { Model } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
 	
-	class EducationLevels extends Model {
+	class MaritalStatuses extends Model {
 		
 		static associate(models) {
 			// define association here
 		}
 	};
 
-	EducationLevels.init({
+	MaritalStatuses.init({
 		id: {
 			type: DataTypes.BIGINT,
 			autoIncrement: true,
@@ -25,9 +25,9 @@ module.exports = (sequelize, DataTypes) => {
 		sequelize,
 		timestamps: false,
 
-    	modelName: 'EducationLevels',
-		tableName : 'education_levels'
+    	modelName: 'MaritalStatuses',
+		tableName : 'marital_statuses'
 	});
 
-	return EducationLevels;
+	return MaritalStatuses;
 };
