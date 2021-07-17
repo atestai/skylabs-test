@@ -1,0 +1,11 @@
+http://localhost:3000/api/v1.0/records
+
+    - http://localhost:3000/api/v1.0/records?offset=0&count=10
+
+
+http://localhost:3000/api/v1.0/records/stats/:aggregationType/:aggregationValue 
+
+    - http://localhost:3000/api/v1.0/records/stats/age/33 
+    - http://localhost:3000/api/v1.0/records/stats/education_level_id/11 
+    - http://localhost:3000/api/v1.0/records/stats/occupation_id/13
+
