@@ -1,27 +1,34 @@
-module.exports = {
 
-    getAll : (req, res) => {
+const RecordsModel = require('../models').Records;
+
+
+const Records = {
+
+    async getAll(req, res){
 
         const {offset=undefined} = req.query;
         const {count:limit=undefined} = req.query;
-
         
+        const where = undefined;
 
-        console.log({
-            offset, 
+        const total = await RecordsModel.count({where});
+
+        const data = await RecordsModel.findAll({
+            where,
+            offset,
             limit
         });
 
-
-        //offset e count
-
-
-        res.status(200).send({
+       
+        res.status(200).json({
             meta: {
+                total,
                 offset,
                 limit
             },
-            data: []
+            data
         });
     }
 }
+
+module.exports = Records;
