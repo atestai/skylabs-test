@@ -1,13 +1,17 @@
 1. Cosa si intende per API REST?
 
 Sono delle interfacce di comunicazione che consentono il trasferimento di dati tra applicazioni. 
-Sono baste sul REpresentational State Transfer che sono delle linee guida che creano e governano l'architettura della infrastruttura di comunicazione. 
+Sono basate sulle REpresentational State Transfer, linee guida che creano e governano l'architettura della infrastruttura di comunicazione. 
 Il loro utilizzo è diffuso nella comunicazione tra i servizi Web (web service) e le App di svariata natura, mobile, web e desktop. 
-Nella maggior parte dei casi si usa il protocollo HTTP, HiperText Transfer Protocol, un protocollo applicazione nato per le trasmissione delle pagine web, che prevede la presenza di un client, (richiedente del servizio) e di un server (fornitore del servizio). 
-Il server mette a disposizione una serie di endpoint che possono essere interrogati con vari criteri di sicurezza e di livelli di accesso, tipicamente tramite l'utilizzo di tokens temporanei. 
-Il client che necessita di un servizio fa una richiesta tramite una chiamata alle API ed il server restituisce un messaggio, che può essere in molti formati, i + utilizzati sono Xml e Json, che negli ultimi anni a preso il sopravvento su tutti gli altri formati. 
-Il Json che è la notazione in cui vengono rappresentati gli oggetti nel linguaggio Javascript è ormai utilizzato da tutti i linguaggi di programmazione ed è anche leggibile dagli uomini grazie all'utilizzo della forma chiave/valore. 
-{"name": "Antonio", "email": "my@email.com"}. 
+Nella maggior parte dei casi, si usa il protocollo HTTP, HiperText Transfer Protocol, un protocollo applicazione nato per le trasmissione delle pagine web, che prevede la presenza di un client, (richiedente del servizio) e di un server (fornitore del servizio). 
+Il server mette a disposizione una serie di endpoints che possono essere interrogati con vari criteri di sicurezza e di livelli di accesso, tipicamente tramite l'utilizzo di tokens temporanei. 
+Il client, che necessita di un servizio, fa una richiesta tramite una chiamata alle API ed il server restituisce un messaggio, che può essere in molti formati, i più utilizzati sono Xml e Json, che negli ultimi anni ha preso il sopravvento su tutti gli altri formati. 
+Il Json,la notazione in cui vengono rappresentati gli oggetti nel linguaggio Javascript, è ormai utilizzato da tutti i linguaggi di programmazione ed è anche leggibile dagli uomini grazie all'utilizzo della forma chiave/valore.
+ 
+{
+    "name": "Antonio", 
+    "email": "my@email.com"
+} 
 
 I punti fondamentali delle linee guida sono:
 1. La presenza di un client e di un server.
@@ -19,23 +23,24 @@ I punti fondamentali delle linee guida sono:
 
 
 
+
 2. Cosa si intende per servizio SOAP ?
 
-E' un servizio che si basa sul protocollo SOAP, nato per permettere la comunicazione tra applicazioni sviluppate con linguaggi differente.
-Essendo un protocollo deve seguire regole ben precise, che influiscono sulla complessità delle soluzioni ed il carico di gestione del sistema allungando di tempi comunicazione. 
-D'altro canto garantisce degli standard di conformità come sicurezza, atomicità, coerenza ed isolamento (ACID) che lo fanno preferire per le soluzioni enterprice.
+E' un servizio che si basa sul protocollo SOAP, nato per permettere la comunicazione tra applicazioni sviluppate con linguaggi differenti.
+Essendo un protocollo, deve seguire regole ben precise, che influiscono sulla complessità delle soluzioni ed il carico di gestione del sistema allungando di tempi comunicazione. 
+D'altro canto garantisce degli standard di conformità come sicurezza, atomicità, coerenza ed isolamento (ACID) che lo fanno preferire per lo sviluppo di soluzioni enterprice.
 Il formato utilizzato per lo scambio dei messaggi è XML. 
 
-Esempi di servizi che implementano il protocollo SOAP sono alcuni gateway utilizzati per lo scambio delle fatture elettronico col sistema di interscambio dell'Agenzia delle Entrate. 
+Esempi di servizi che implementano il protocollo SOAP sono alcuni gateway utilizzati per lo scambio delle fatture elettroniche col sistema di interscambio dell'Agenzia delle Entrate. 
 I servizi Soap vengono preferiti dunque quando si vuole garantire elevata sicurezza e transazioni complesse.
 
 
 
 3. Cos'è un database relazionale ?
 
-E' la raccolta di un insieme di dati che sono legati tra loro per mezzo di relazioni predefinite. 
-I dati che possono essere classificati in entità vengono conservati nelle tabelle del DB.
-Le tabelle sono formate da righe che rappresentano i records e da colonne che rappresentano gli attributi o campi di ogni record. 
+Un database relazionale è la raccolta di un insieme di dati che sono legati tra loro per mezzo di relazioni predefinite. 
+I dati, che possono essere classificati in entità e relazioni tra di esse, vengono conservati nelle tabelle del DB.
+Le tabelle sono formate da righe, che rappresentano i records, da colonne, che rappresentano gli attributi o campi di ogni record. 
 I campi possono essere di vari tipi da numerici a testuali da binari ad enumerati, ecc...
 Un insieme di campi è definito chiave primaria quando identifica univocamente un record della tabella. 
 I records di una tabella possono essere relazionati ai records di un altra tabella, questo avviene tramite l'utilizzo delle chiavi esterne, che servono per congiungere le tabelle quando vengono eseguite le interrogazioni per la consultazione dei dati del DB.
@@ -105,6 +110,7 @@ Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle 
         }
     ]
 }
+
 
 
 
@@ -217,7 +223,6 @@ in questo modo l'attacco fallirebbe perchè abbiamo rispettato la logica di come
 
 7. Cos'è l'autenticazione a 2 fattori? Descrivi brevemente un esempio.
 
-
 E' un metodo di autenticazione sicura per sistemi e piattaforme informatiche e consiste nell’utilizzo di due metodi invece che uno, 
 ad esempio l’inserimento di una password e la scansione dell’impronta digitale.
 
@@ -237,6 +242,7 @@ Una volta eseguito l'accesso nella propria area personale, per effettuare delle 
 
     1. inserire un pin (una cosa che sai)
     2. utilizzare un token - dispositivo che dimostri la tua identità, (una cosa che hai)
+
     
     
 
@@ -258,8 +264,8 @@ sha1 che è un buon compromesso tra sicurezza e complessità di esecuzione.
  
 
 
-9. Cos'è una Sticky Session in un sistema con Load Balancing?
 
+9. Cos'è una Sticky Session in un sistema con Load Balancing?
 
 I classici load balancer hanno il compito di instradare ogni richiesta su un server o un istanza virtuale registrata con il minor carico, rendendo il sistema equilibrato.
 
