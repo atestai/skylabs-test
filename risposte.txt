@@ -1,7 +1,7 @@
 1. Cosa si intende per API REST?
 
 Sono delle interfacce di comunicazione che consentono il trasferimento di dati tra applicazioni. 
-Sono basate sulle REpresentational State Transfer, linee guida che creano e governano l'architettura della infrastruttura di comunicazione. 
+Sono basate sulle REpresentational State Transfer, linee guida che creano e governano l'architettura dell'infrastruttura di comunicazione. 
 Il loro utilizzo è diffuso nella comunicazione tra i servizi Web (web service) e le App di svariata natura, mobile, web e desktop. 
 Nella maggior parte dei casi, si usa il protocollo HTTP, HiperText Transfer Protocol, un protocollo applicazione nato per le trasmissione delle pagine web, che prevede la presenza di un client, (richiedente del servizio) e di un server (fornitore del servizio). 
 Il server mette a disposizione una serie di endpoints che possono essere interrogati con vari criteri di sicurezza e di livelli di accesso, tipicamente tramite l'utilizzo di tokens temporanei. 

@@ -1,14 +1,14 @@
-1. Scrivi una query che estragga il ​ numero di persone​ con ​ meno di 30 anni​ che guadagnano​ più di 50.000 dollari l'anno.
+1. Scrivi una query che estragga il ​numero di persone​ con ​meno di 30 anni​ che guadagnano​ più di 50.000 dollari l'anno.
 
 SELECT count(id) 
 FROM records 
 WHERE age < 30 AND over_50k = 1;
 
 
-2. Scrivi una query che riporti il ​ guadagno di capitale medio​ per ogni categoria
+2. Scrivi una query che riporti il ​guadagno di capitale medio​ per ogni categoria
 lavorativa
 
-SELECT tw.name, avg(tr.capital_gain) AS avg_gain
+SELECT tw.name as workclass, avg(tr.capital_gain) AS capital_gain_avg
 FROM records tr
 JOIN workclasses tw ON tr.workclass_id = tw.id
 GROUP BY tw.name 
