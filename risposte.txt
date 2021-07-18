@@ -39,56 +39,86 @@ I servizi Soap vengono preferiti dunque quando si vuole garantire elevata sicure
 3. Cos'è un database relazionale ?
 
 Un database relazionale è la raccolta di un insieme di dati che sono legati tra loro per mezzo di relazioni predefinite. 
-I dati, che possono essere classificati in entità e relazioni tra di esse, vengono conservati nelle tabelle del DB.
+I dati, che possono essere classificati in entità e relazioni tra di esse, vengono conservati nelle tabelle del DB. Questa tecnica è detta normalizzazione.
 Le tabelle sono formate da righe, che rappresentano i records, da colonne, che rappresentano gli attributi o campi di ogni record. 
 I campi possono essere di vari tipi da numerici a testuali da binari ad enumerati, ecc...
 Un insieme di campi è definito chiave primaria quando identifica univocamente un record della tabella. 
-I records di una tabella possono essere relazionati ai records di un altra tabella, questo avviene tramite l'utilizzo delle chiavi esterne, che servono per congiungere le tabelle quando vengono eseguite le interrogazioni per la consultazione dei dati del DB.
+I records di una tabella possono essere relazionati ai records di un altra tabella, questo avviene tramite l'utilizzo delle chiavi esterne, 
+che servono per congiungere le tabelle quando vengono eseguite le interrogazioni per la consultazione dei dati del DB.
+Le relazioni possono essere :
+    - uno a uno, quando un record di una tabella è relazionato con un solo record di un'altra tabella.
+    - uno a molti, quando un record di una tabella è relazionato con più record di un'altra tabella.
+    - molti a molti quando più record di una tabella sono relazionati con più record di un'altra tabella.
 
-Per manipolare i dati del DB si utilizza un linguaggio denominato SQL i comandi del database possono essere di vari tipi:
+Per manipolare i dati del DB si utilizza un linguaggio denominato SQL. 
+I comandi del database possono essere di vari tipi:
 
-Interrogazione - restituiscono dati in base ai criteri di selezione e di richiesta. 
-SELECT campo1, campo2 FROM tabella WHERE campo3 = valore;
-è anche possibile combinare i dati di piu tabella usando le istruzioni di JOIN che collegano le tabelle relazionate tra di loro tramite le chiavi esterne e primarie. 
+    Interrogazione - restituiscono dati in base ai criteri di selezione e di richiesta. 
+        
+        SELECT campo1, campo2 FROM tabella WHERE campo3 = valore;
 
-Inserimento - inseriscono nuovi record nelle tabelle del DB
-INSERT INTO tabella (campo1,campo2) VALUES (valore1,valore2);
+    è anche possibile combinare i dati di più tabella usando le istruzioni di JOIN che collegano le tabelle tramite le chiavi esterne e primarie. 
 
-Modifica - variano i dati che rispettano date condizioni
-UPDATE tabella SET campo1 = valore1, campo2 = valore2 WHERE campo3 = valore;
+        SELECT tabella1.campo1, tabella1.campo2, tabella2.campo2
+        FROM tabella1
+        JOIN tabella2 ON  tabella1.compo3 = tabella2.campo1   
+        WHERE tabella1.campo3 = valore;
+    
 
-Cancellazione - eliminano in modeo permanente i records dal db
-DELETE FROM tabella WHERE campo1 = valore;
+    Inserimento - inseriscono nuovi record nelle tabelle del DB
+        
+        INSERT INTO tabella (campo1,campo2) VALUES (valore1,valore2);
 
-Oltre a questi che servono alla manipolazione dei record abbiamo altri comandi per la gestione della struttura del DB:
-CREATE TABLE, ALTER TABLE, DROP, TRUNCATE.   
+    Modifica - variano i dati che rispettano date condizioni
+        
+        UPDATE tabella SET campo1 = valore1, campo2 = valore2 WHERE campo3 = valore;
 
-I dati vengono gestiti tramite DBMS un sistema di gestione tra i più conosciuti ricordiamo: Oracle, Mysql, MariaDB, PostgreSQL che garantiscono uno standard ACID tramite l'utilizzo delle transazioni, cioè una sequenza di operazioni atomiche che possono concludersi con un evento di successo detto COMMIT o di insuccesso ROLLBACK   
+    Cancellazione - eliminano in modo permanente i records dal db
+        
+        DELETE FROM tabella WHERE campo1 = valore;      
 
-E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni attraverso gli opportuni driver cosi da eseguire le query dal linguaggio e manipolarne i dati per avere di risultati.
+Oltre a questi abbiamo altri comandi per la gestione della struttura del DB:
+    
+    CREATE TABLE, ALTER TABLE, DROP, TRUNCATE.   
+
+I dati vengono gestiti tramite DBMS, un software che il compito di gestione dei dati. 
+IL DBMS garantisce uno standard ACID tramite l'utilizzo delle transazioni, 
+cioè una sequenza di operazioni atomiche che possono concludersi con un evento di successo detto COMMIT o di insuccesso ROLLBACK 
+
+Tra i DBMS più conosciuti ricordiamo: Oracle, Mysql, MariaDB, PostgreSQL    
+
+E' possibile collegare il DBMS a tutti i linguaggi di programmazione moderni attraverso 
+opportuni driver cosi da eseguire le queries dal linguaggio di programmazione e manipolarne i dati per avere i risultati direttamente in memoria.
 
 
 
 4. Cos'è un database NoSQL ?
 
 I DB noSQL non utilizzano le tabelle per memorizzare i dati. 
-Possono essere distinti in varie tipologie in base a loro modello di dati. 
-I più importanti sono i documenti (MongoDB), chiave/valore (Redis), wide-columns (Cassandra) e i grafici. 
-I DB noSQL sono pensati per applicazioni che necessitano di grandi volumi di dati e garantiscono flessibilità dello schema di rappresentazione del dato e una bassa latenza, minimizzando o avvolte eliminando i classici criteri di coerenza di dati che offrono i DB relazionali ad esempio le join e le transazioni.      
+Possono essere distinti in varie tipologie in base al proprio modello di dati. 
+I tipi più importanti sono i documenti (MongoDB), chiave/valore (Redis), wide-columns (Cassandra) e i grafici.
+ 
+I DB noSQL sono pensati per applicazioni che necessitano di grandi volumi di dati e 
+garantiscono flessibilità dello schema di rappresentazione del dato e una bassa latenza, 
+minimizzando o spesso eliminando i classici criteri di coerenza di dati che offrono i DB relazionali, ad esempio le join e le transazioni.      
 
 Un database noSql molto utilizzato è MongoDB, un db documentale. 
 I documenti che hanno la forma di oggetti JSON vengono memorizzati in contenitori chiamati collections.
-Ciascun documento contiene una serie di coppie campo/valore. I valori sono di vari tipi ad esempio stringhe, numeri, booleani, array o oggetti. 
-Questo permettere agli sviluppatori di allineare i documenti del db con gli oggetti che si usano durante la programmazione cosi mantenere persistente la base di dati durante l'esecuzione del codice.   
+Ciascun documento contiene una serie di coppie campo/valore. I valori sono di vari tipi ad esempio stringhe, numeri, booleani, array o oggetti, ecc. 
+Questo permettere agli sviluppatori di allineare e sincronizzare i documenti del db con gli oggetti del linguaggio di programmazione, 
+cosi da mantenere persistente la base di dati durante l'esecuzione del programma.   
 
-Le sue caratteristiche gli permettono alte performance e di essere altamente scalabile orizzontalmente (aggiunta di server, contro la sostituzione con un altro + grande). 
-La scalabilità consente la distribuzione su + servers acquisendo i seguenti vantaggi: 
+Le sue caratteristiche gli permettono alte performance e di essere altamente scalabile orizzontalmente 
+(aggiunta di server e non la sostituzione con un altro + grande).
+ 
+La scalabilità consente la distribuzione su più servers acquisendo i seguenti vantaggi: 
 - gestione di grandi volumi di dati.
-- risposta reattiva ai fail-hover, se una macchina smette di funzionare si possono dirottare i dati su di un altra attiva,
+- risposta reattiva ai fail-hover, se una macchina smette di funzionare si possono dirottare i dati su di un altra attiva
 - alta disponibilità  
 - disaster recovery
 
 Per ottenere la performance e scalabilità si è dovuto rinunciare a funzioni fondamentali dei db Realzionali: le Join e le transazioni.
+
 Per ovviare alla mancanza delle JOIN si è introdotto il concetto di Pre-Join(incapsulazione) detto anche "denormalizzazione" in questo modo i dati vengono salvati già uniti. 
 Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle secondarie del DB.
 
@@ -116,20 +146,21 @@ Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle 
 
 5. Cos'è un ORM ? Fai almeno un esempio.
 
-E' l'acronimo di Object-Relational Mapping è una tecnica di programmazione utilizzata per la gestione dati di un database relazionale all’interno di programmi sviluppati con linguaggi di programmazione orientata agli oggetti. Cosi da mantenere una sincronizzazione persistente tra i dati presenti in memoria durante l'esecuzione di un programma e la base di dati. 
-E' possibile gestire operazioni di interrogazione, creazione, aggiornamento, cancellazione dei records e migrazione della struttura dati, agendo sugli oggetti (Models) che che mappano virtualmente le tabelle del db, in modo da avere le stesse operazioni riportate sulla base di dati in modo persistente.
+E' l'acronimo di Object-Relational Mapping, è una tecnica di programmazione utilizzata per la gestione dati di un database relazionale all’interno di programmi sviluppati con linguaggi di programmazione orientata agli oggetti. 
+Cosi da mantenere una sincronizzazione persistente tra i dati presenti in memoria durante l'esecuzione di un programma e la base di dati. 
+E' possibile gestire operazioni di interrogazione, creazione, aggiornamento, cancellazione dei records e migrazione della struttura dati, agendo sugli oggetti (Models) che mappano virtualmente le tabelle del db, in modo da avere le stesse operazioni riportate sulla base di dati in modo persistente.
 
 I vantaggi introdotti da questa tecnica sono: 
     - manipolare i dati come se fossero oggetti 
     - creazione di codici più leggibili e corti
     - la presenza di un queries builder, cioè uno strumento che permette la scrittura delle queries in modo ottimizzato e sicuro prevedendo l'SQL injection, 
-        applicando gli opportuni escape e filtraggi ai dei dati in input.
-    - la portabilità dell'applicazione infatti rendono il programma indipendente dal db che conserva i dati, creando un interfaccia tra i due. 
+        applicando gli opportuni escape e filtraggi ai dati in input.
+    - la portabilità dell'applicazione, infatti gli ORM rendono il programma indipendente dal db, creando un'interfaccia tra i due, permettendo così la sostituzione del db stesso. 
 
 Gli svantaggi:
-    - curva di apprendimento lenta (si devono conoscere le API del implementazione dell'ORM per poterlo utilizzare, non basta conoscere SQL) 
+    - curva di apprendimento lenta (si devono conoscere le API dell'implementazione dell'ORM per poterlo utilizzare, non basta solo conoscere la sintassi SQL) 
     - complessità nell'utilizzo 
-    - non tutte le queries possono essere effettuate con questa tecnica, per questo molti ORM danno la possibilità di eseguire direttamente le queries da codice SQL.
+    - non tutte le queries possono essere effettuate con questa tecnica, per questo molti ORM danno la possibilità di eseguire direttamente le queries da codice SQL. 
 
 Un esempio di implementazione di un ORM è Sequelizze utilizzato nell'ambiente NodeJs.
 
@@ -160,19 +191,19 @@ Un esempio di implementazione di un ORM è Sequelizze utilizzato nell'ambiente N
             
         EducationLevels.findAll(); // Interrogazione
 
-        EducationLevels.create({
+        EducationLevels.create({ // Inserimento di un record
             name : 'Doctor'
         });
 
 
-        EducationLevels.update({ name: "Prof" }, {  //Modifica di dati
+        EducationLevels.update({ name: "Prof" }, {  //Modifica di un record
           where: {
             id: 5
           }
         });
 
 
-        EducationLevels.destroy({ //cancellazione di dati
+        EducationLevels.destroy({ //cancellazione di un record
           where: {
             id : 5
           }
@@ -185,13 +216,13 @@ Un esempio di implementazione di un ORM è Sequelizze utilizzato nell'ambiente N
 
 E' una tecnica di code injection (inserimento di codice malevolo), consiste nell'attaccare applicazioni di gestione dati, attraverso l’inserimento e la conseguente esecuzione di stringhe di codice SQL estranee.
 
-per esempio la classica query che si esegue per identificare ed autenticare un utente dentro un sistema è:
+Per esempio la classica query che si esegue per identificare ed autenticare un utente dentro un sistema è:
 
     SELECT * 
     FROM users 
     WHERE username = 'my-username' AND password = 'my-password'
 
-questa query ritorna i campi della tabella user a condizione che i campi username e password coincidono con quelli dati in input. 
+questa query ritorna i campi della tabella users a condizione che i campi username e password coincidono con quelli dati in input. 
 
 Immaginiamo ora di processare la query col seguente input:
 
@@ -208,7 +239,7 @@ la query si trasformerebbe in :
 
 che è diversa da come l'aveva pensata il programmatore: 
 
-questa query ritorna  i campi del primo record della tabella user, violando l'accesso al sistema.
+questa query ritorna i campi del primo record della tabella users, violando l'accesso al sistema.
 
 Per ovviare a questo attacco si devono sempre filtrare i dati in input e fare gli opportuni escape mentre si costruisce la query da eseguire.
 
@@ -223,7 +254,7 @@ in questo modo l'attacco fallirebbe perchè abbiamo rispettato la logica di come
 
 7. Cos'è l'autenticazione a 2 fattori? Descrivi brevemente un esempio.
 
-E' un metodo di autenticazione sicura per sistemi e piattaforme informatiche e consiste nell’utilizzo di due metodi invece che uno, 
+E' un metodo di autenticazione sicura per sistemi e piattaforme informatiche, consiste nell’utilizzo di due metodi invece che uno, 
 ad esempio l’inserimento di una password e la scansione dell’impronta digitale.
 
 Per accedere a un sistema protetto, l’utente deve eseguire due operazioni:
@@ -231,11 +262,11 @@ Per accedere a un sistema protetto, l’utente deve eseguire due operazioni:
     - identificazione (tramite username)
     - autenticazione (tramite password)
 
-l'autenticazione a 2 fattori prevede due tipi di autenticazione di origine diversa,scelti tra :
+l'autenticazione a 2 fattori prevede due tipi di autenticazione di origine diversa,scelti tra:
 
     - Una cosa che sai, password
     - Una cosa che hai, smartcard, dispositivo mirato a tal scopo, app sullo smartphone  
-    - Una cosa che sei, impronta digitale, dato biometrico
+    - Una cosa che sei, impronta digitale o altro dato biometrico
 
 Il sistema di autenticazione a 2 fattori è utilizzato ad esempio nelle app di web banking.
 Una volta eseguito l'accesso nella propria area personale, per effettuare delle operazioni tipo bonifico si deve:
@@ -261,7 +292,10 @@ Caratteristiche che le rendono ideale sono:
 esempi di funzioni hash utilizzati per il salvataggio dei dati sono md5 ormai poco usata per via della sua scarsa sicurezza e 
 sha1 che è un buon compromesso tra sicurezza e complessità di esecuzione.
 
- 
+Esempio di controllo è il seguente
+
+    sha1(password_in_input) == sha1(password_salvata_sul_db).
+
 
 
 
@@ -269,15 +303,15 @@ sha1 che è un buon compromesso tra sicurezza e complessità di esecuzione.
 
 I classici load balancer hanno il compito di instradare ogni richiesta su un server o un istanza virtuale registrata con il minor carico, rendendo il sistema equilibrato.
 
-Una ticky Session letteralmente incolla una sessione utente ad una server/istanza specifico, creando un'associazione tra di essi in modo persistente.
-Quindi durante tutte la sessione le richieste dell'utente verranno inviate alla stesso server/istanza. 
+Una sticky session letteralmente incolla una sessione utente ad un server specifico, creando un'associazione tra di essi in modo persistente.
+Quindi durante tutta la sessione, le richieste dell'utente, verranno inviate alla stesso server. 
 
 Questa soluzione permette performance migliori dovute al fatto che non si devono scambiare le informazioni delle sessioni ad ogni richiesta, 
 inoltre si possono sfruttare meccanismi di cache per velocizzare le risposte. 
-Di contro rendono più difficile il bilanciamento del carico provocando sovraccarichi dei server/istanze.
+Di contro rendono più difficile il bilanciamento del carico provocando sovraccarichi dei server.
 
 Possono essere gestiti tramite dei cookies che indicano un intervallo di tempo di durata dell'associazione. 
-In fase di richiesta il LB controlla se il tempo indicato è valido ed instrada costantemente la richiesta allo stesso server/istanza.
+In fase di richiesta il LB controlla se il tempo indicato è valido ed instrada costantemente la richiesta allo stesso server.
 A tempo scaduto si perde l'associazione persistente.
 
 Questi cookies possono essere gestiti sia dall'applicazione che fa la richiesta, sia dal LB.
