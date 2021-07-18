@@ -241,6 +241,48 @@ Una volta eseguito l'accesso nella propria area personale, per effettuare delle 
     
 
 
+8. Descrivi brevemente un metodo sicuro per salvare le password degli utenti sul DB.
+
+Si possono usare le funzioni hash, che convertono input di lunghezza arbitraria in una stringa binaria di lunghezza fissa (digest) 
+che viene determinata dal tipo di algoritmo utilizzato per la conversione. 
+Queste funzioni sono invertibili quindi non è possibile risalire all'input partendo dall'output.
+
+Caratteristiche che le rendono ideale sono: 
+    
+    - identificano univocamente la password (due password che differiscono di 1 solo carattere hanno valore hash completamente diversi)
+    - l'algoritmo è deterministico - ad un input corrisponde sempre lo stesso output
+
+esempi di funzioni hash utilizzati per il salvataggio dei dati sono md5 ormai poco usata per via della sua scarsa sicurezza e 
+sha1 che è un buon compromesso tra sicurezza e complessità di esecuzione.
+
+ 
+
+
+9. Cos'è una Sticky Session in un sistema con Load Balancing?
+
+
+I classici load balancer hanno il compito di instradare ogni richiesta su un server o un istanza virtuale registrata con il minor carico, rendendo il sistema equilibrato.
+
+Una ticky Session letteralmente incolla una sessione utente ad una server/istanza specifico, creando un'associazione tra di essi in modo persistente.
+Quindi durante tutte la sessione le richieste dell'utente verranno inviate alla stesso server/istanza. 
+
+Questa soluzione permette performance migliori dovute al fatto che non si devono scambiare le informazioni delle sessioni ad ogni richiesta, 
+inoltre si possono sfruttare meccanismi di cache per velocizzare le risposte. 
+Di contro rendono più difficile il bilanciamento del carico provocando sovraccarichi dei server/istanze.
+
+Possono essere gestiti tramite dei cookies che indicano un intervallo di tempo di durata dell'associazione. 
+In fase di richiesta il LB controlla se il tempo indicato è valido ed instrada costantemente la richiesta allo stesso server/istanza.
+A tempo scaduto si perde l'associazione persistente.
+
+Questi cookies possono essere gestiti sia dall'applicazione che fa la richiesta, sia dal LB.
+
+      
+
+
+
+
+
+
 
 
 
