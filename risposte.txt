@@ -127,50 +127,100 @@ Gli svantaggi:
 
 Un esempio di implementazione di un ORM è Sequelizze utilizzato nell'ambiente NodeJs.
 
-Si crea un modello che ha il compito di mappare una tabella del db:
+    - Si crea un modello che ha il compito di mappare una tabella del db:
 
-class EducationLevels extends Model {};
+        class EducationLevels extends Model {};
 
-EducationLevels.init({
-	id: {
-		type: DataTypes.BIGINT,
-		autoIncrement: true,
-		primaryKey: true,
-		allowNull: false
-	},
+        EducationLevels.init({
+	        id: {
+		        type: DataTypes.BIGINT,
+		        autoIncrement: true,
+		        primaryKey: true,
+		        allowNull: false
+	        },
 
-	name: DataTypes.STRING
+	        name: DataTypes.STRING
 
-}, {
-	sequelize,
-	timestamps: false,
+        }, {
+	        sequelize,
+	        timestamps: false,
 
-	modelName: 'EducationLevels',
-	tableName : 'education_levels'
-});    
+	        modelName: 'EducationLevels',
+	        tableName : 'education_levels'
+        });    
 
-si possono eseguire le operazioni tramite i metodi dell'oggetto:
+    - si possono eseguire le operazioni tramite i metodi dell'oggetto:
+     
+            
+        EducationLevels.findAll(); // Interrogazione
+
+        EducationLevels.create({
+            name : 'Doctor'
+        });
+
+
+        EducationLevels.update({ name: "Prof" }, {  //Modifica di dati
+          where: {
+            id: 5
+          }
+        });
+
+
+        EducationLevels.destroy({ //cancellazione di dati
+          where: {
+            id : 5
+          }
+        });
+
+
+
+
+6. Cos'è la SQL Injection
+
+E' una tecnica di code injection (inserimento di codice malevolo), consiste nell'attaccare applicazioni di gestione dati, attraverso l’inserimento e la conseguente esecuzione di stringhe di codice SQL estranee.
+
+per esempio la classica query che si esegue per identificare ed autenticare un utente dentro un sistema è:
+
+    SELECT * 
+    FROM users 
+    WHERE username = 'my-username' AND password = 'my-password'
+
+questa query ritorna i campi della tabella user a condizione che i campi username e password coincidono con quelli dati in input. 
+
+Immaginiamo ora di processare la query col seguente input:
+
+    {
+        username : "%' limit 1 #",
+        password : "pass"
+    }
+
+la query si trasformerebbe in : 
+
+    SELECT * 
+    FROM users 
+    WHERE username = '%' limit 1  #' AND password = 'pass'
+
+che è diversa da come l'aveva pensata il programmatore: 
+
+questa query ritorna  i campi del primo record tabella user, violando l'accesso al sistema.
+
+Per ovviare a questo accatto si devono sempre filtrare i dati in input e fare gli opportuni escape montando la query da eseguire.
+
+    SELECT * 
+    FROM users 
+    WHERE username = '\%\' limit 1  #' AND password = 'pass'
+
+in questo l'attacco fallirebbe perche abbiamo rispettato la logica di come era stata pensata la query.
+
+
+  
+
+
+
+
+
+
  
-EducationLevels.findAll();
-
-EducationLevels.create({
-    name : 'Doctor'
-});
-
-EducationLevels.update({ name: "Prof" }, {
-  where: {
-    id: 5
-  }
-});
-
-
-EducationLevels.destroy({
-  where: {
-    id : 5
-  }
-});
-
-
 
 
 
