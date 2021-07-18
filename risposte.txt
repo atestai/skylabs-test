@@ -218,6 +218,30 @@ in questo modo l'attacco fallirebbe perchè abbiamo rispettato la logica di come
 7. Cos'è l'autenticazione a 2 fattori? Descrivi brevemente un esempio.
 
 
+E' un metodo di autenticazione sicura per sistemi e piattaforme informatiche e consiste nell’utilizzo di due metodi invece che uno, 
+ad esempio l’inserimento di una password e la scansione dell’impronta digitale.
+
+Per accedere a un sistema protetto, l’utente deve eseguire due operazioni:
+
+    - identificazione (tramite username)
+    - autenticazione (tramite password)
+
+l'autenticazione a 2 fattori prevede due tipi di autenticazione di origine diversa,scelti tra :
+
+    - Una cosa che sai, password
+    - Una cosa che hai, smartcard, dispositivo mirato a tal scopo, app sullo smartphone  
+    - Una cosa che sei, impronta digitale, dato biometrico
+
+Il sistema di autenticazione a 2 fattori è utilizzato ad esempio nelle app di web banking.
+Una volta eseguito l'accesso nella propria area personale, per effettuare delle operazioni tipo bonifico si deve:
+
+    1. inserire un pin (una cosa che sai)
+    2. utilizzare un token - dispositivo che dimostri la tua identità, (una cosa che hai)
+    
+    
+
+
+
 
 
 
