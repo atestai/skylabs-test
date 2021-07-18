@@ -190,7 +190,7 @@ questa query ritorna i campi della tabella user a condizione che i campi usernam
 Immaginiamo ora di processare la query col seguente input:
 
     {
-        username : "%' limit 1 #",
+        username : "%' limit 1; #",
         password : "pass"
     }
 
@@ -198,22 +198,27 @@ la query si trasformerebbe in :
 
     SELECT * 
     FROM users 
-    WHERE username = '%' limit 1  #' AND password = 'pass'
+    WHERE username = '%' limit 1; #' AND password = 'pass'
 
 che è diversa da come l'aveva pensata il programmatore: 
 
-questa query ritorna  i campi del primo record tabella user, violando l'accesso al sistema.
+questa query ritorna  i campi del primo record della tabella user, violando l'accesso al sistema.
 
-Per ovviare a questo accatto si devono sempre filtrare i dati in input e fare gli opportuni escape montando la query da eseguire.
+Per ovviare a questo attacco si devono sempre filtrare i dati in input e fare gli opportuni escape mentre si costruisce la query da eseguire.
 
     SELECT * 
     FROM users 
-    WHERE username = '\%\' limit 1  #' AND password = 'pass'
+    WHERE username = '%\' limit 1; #' AND password = 'pass'
 
-in questo l'attacco fallirebbe perche abbiamo rispettato la logica di come era stata pensata la query.
+in questo modo l'attacco fallirebbe perchè abbiamo rispettato la logica di come era stata pensata la query.
 
 
-  
+
+
+7. Cos'è l'autenticazione a 2 fattori? Descrivi brevemente un esempio.
+
+
+
 
 
 
