@@ -90,11 +90,11 @@ Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle 
 {
     "_id" : 1,
     "name" : "Antonio",
-    "workclass" : {
+    "work" : {
         "name" :"Developer"
         "qualification" : "full stack"
     }
-    "cars" :[
+    "cars" : [
         {
             "brand" : "Nissan",
             "name" : "Juke"
@@ -104,12 +104,77 @@ Ogni entità deve contenere anche tutte le informazioni derivanti dalle tabelle 
             "year" : 2010  
         }
     ]
-
 }
 
 
 
+5. Cos'è un ORM ? Fai almeno un esempio.
 
+E' l'acronimo di Object-Relational Mapping è una tecnica di programmazione utilizzata per la gestione dati di un database relazionale all’interno di programmi sviluppati con linguaggi di programmazione orientata agli oggetti. Cosi da mantenere una sincronizzazione persistente tra i dati presenti in memoria durante l'esecuzione di un programma e la base di dati. 
+E' possibile gestire operazioni di interrogazione, creazione, aggiornamento, cancellazione dei records e migrazione della struttura dati, agendo sugli oggetti (Models) che che mappano virtualmente le tabelle del db, in modo da avere le stesse operazioni riportate sulla base di dati in modo persistente.
+
+I vantaggi introdotti da questa tecnica sono: 
+    - manipolare i dati come se fossero oggetti 
+    - creazione di codici più leggibili e corti
+    - la presenza di un queries builder, cioè uno strumento che permette la scrittura delle queries in modo ottimizzato e sicuro prevedendo l'SQL injection, 
+        applicando gli opportuni escape e filtraggi ai dei dati in input.
+    - la portabilità dell'applicazione infatti rendono il programma indipendente dal db che conserva i dati, creando un interfaccia tra i due. 
+
+Gli svantaggi:
+    - curva di apprendimento lenta (si devono conoscere le API del implementazione dell'ORM per poterlo utilizzare, non basta conoscere SQL) 
+    - complessità nell'utilizzo 
+    - non tutte le queries possono essere effettuate con questa tecnica, per questo molti ORM danno la possibilità di eseguire direttamente le queries da codice SQL.
+
+Un esempio di implementazione di un ORM è Sequelizze utilizzato nell'ambiente NodeJs.
+
+Si crea un modello che ha il compito di mappare una tabella del db:
+
+class EducationLevels extends Model {};
+
+EducationLevels.init({
+	id: {
+		type: DataTypes.BIGINT,
+		autoIncrement: true,
+		primaryKey: true,
+		allowNull: false
+	},
+
+	name: DataTypes.STRING
+
+}, {
+	sequelize,
+	timestamps: false,
+
+	modelName: 'EducationLevels',
+	tableName : 'education_levels'
+});    
+
+si possono eseguire le operazioni tramite i metodi dell'oggetto:
+ 
+EducationLevels.findAll();
+
+EducationLevels.create({
+    name : 'Doctor'
+});
+
+EducationLevels.update({ name: "Prof" }, {
+  where: {
+    id: 5
+  }
+});
+
+
+EducationLevels.destroy({
+  where: {
+    id : 5
+  }
+});
+
+
+
+
+
+    
 
 
 
